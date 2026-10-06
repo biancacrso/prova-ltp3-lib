@@ -156,13 +156,13 @@ erDiagram
 
 **Q1.1 — Como criar uma model no Laravel?**
 
-> _Resposta:_
+> _Resposta:_ Uma model pode ser criada pelo terminal usando o comando php artisan make:model NomeDaModel. Ela representa uma entidade do sistema e permite interagir com os dados da tabela correspondente no banco de dados.
 >
 >
 
 **Q1.2 — Como funciona uma model? Explique o papel das propriedades `$table` e `$fillable` e dos relacionamentos `hasMany` / `belongsTo`.**
 
-> _Resposta:_
+> _Resposta:_ A propriedade $table define o nome da tabela associada à model, enquanto $fillable indica quais campos podem ser preenchidos em operações de cadastro e atualização em massa. O relacionamento hasMany representa uma relação em que um autor possui vários livros, enquanto belongsTo indica que um livro pertence a um autor.
 >
 >
 
@@ -180,13 +180,13 @@ Confira no MySQL se as tabelas `autores` e `livros` foram criadas.
 
 **Q2.1 — Como criar uma migration e aplicá-la no banco de dados?**
 
-> _Resposta:_
+> _Resposta:_ Uma migration é criada pelo comando php artisan make:migration nome_da_migration. Depois de definir a estrutura da tabela no método up(), executamos php artisan migrate para aplicar as alterações ao banco de dados.
 >
 >
 
 **Q2.2 — Como funciona uma migration? Explique os métodos `up()` e `down()`, a importância da ordem de execução e o que faz `foreignId(...)->constrained(...)`.**
 
-> _Resposta:_
+> _Resposta:_ O método up() define as alterações que serão aplicadas ao banco, enquanto o método down() desfaz essas alterações. A ordem de execução é importante porque tabelas que possuem chaves estrangeiras dependem das tabelas referenciadas já existirem. O comando foreignId('autor_id')->constrained('autores') cria uma coluna de identificação relacionada à chave primária da tabela autores, estabelecendo o relacionamento entre livros e autores.
 >
 >
 
@@ -246,19 +246,19 @@ Confira no MySQL se as tabelas `autores` e `livros` foram criadas.
 
 **Q3.1 — Como criar um controller? Qual a diferença de usar as opções `--resource` e `--model`?**
 
-> _Resposta:_
+> _Resposta:_ Um controller pode ser criado pelo comando php artisan make:controller NomeController. A opção --resource cria os métodos padrão de um CRUD, enquanto --model associa o controller a uma model específica.
 >
 >
 
 **Q3.2 — Como funciona um controller dentro da arquitetura MVC? Explique a comunicação entre Model, View e Controller e o que é o *Route Model Binding* (ex.: receber `Autor $autor` no método).**
 
-> _Resposta:_
+> _Resposta:_ O controller recebe as requisições, utiliza a Model para consultar ou modificar os dados e retorna a View para apresentar as informações. O Route Model Binding permite que o Laravel encontre automaticamente um registro pelo identificador da rota e o entregue ao método, como em Autor $autor.
 >
 >
 
 **Q3.3 — Como funciona o `$request->validate()`? O que acontece quando a validação falha e quando ela passa?**
 
-> _Resposta:_
+> _Resposta:_ O método $request->validate() verifica se os dados enviados atendem às regras definidas. Se a validação falhar, o Laravel interrompe a operação e retorna os erros para o formulário. Se passar, os dados validados podem ser utilizados para cadastrar ou atualizar o registro.
 >
 >
 
@@ -293,13 +293,13 @@ Confira no MySQL se as tabelas `autores` e `livros` foram criadas.
 
 **Q4.1 — Como criar as rotas de um CRUD no Laravel? Quais rotas o `Route::resource` gera (método HTTP, URI, ação e nome)?**
 
-> _Resposta:_
+> _Resposta:_ As rotas podem ser criadas no arquivo routes/web.php usando Route::resource(). Esse método gera rotas para listar, cadastrar, salvar, visualizar, editar, atualizar e excluir registros, utilizando os métodos HTTP GET, POST, PUT/PATCH e DELETE. Cada rota possui uma URI, uma ação no controller e um nome, como autores.index.
 >
 >
 
 **Q4.2 — Como funciona o sistema de rotas? Explique o caminho de uma requisição desde a URL até o controller e a utilidade das rotas nomeadas (`route('autores.index')`).**
 
-> _Resposta:_
+> _Resposta:_ Quando o usuário acessa uma URL, o Laravel identifica a rota correspondente e chama o método do controller responsável pela requisição. As rotas nomeadas facilitam a criação de links e redirecionamentos, pois permitem utilizar nomes como route('autores.index') sem precisar escrever o endereço completo.
 >
 >
 
@@ -342,13 +342,13 @@ Crie as quatro views abaixo. Todas devem estender o layout base com `@extends('l
 
 **Q5.1 — Como criar um formulário Blade para cadastro e para edição? Por que o formulário de edição precisa de `@method('PUT')` e para que serve o `@csrf`?**
 
-> _Resposta:_
+> _Resposta:_ Os formulários Blade são criados em arquivos .blade.php e podem utilizar @extends e @section para aproveitar o layout da aplicação. O @method('PUT') permite enviar uma requisição de atualização, enquanto @csrf protege o formulário contra requisições falsificadas.
 >
 >
 
 **Q5.2 — Como funciona a exibição dos erros de validação e a manutenção dos dados digitados? Explique `$errors`, `@error` e `old()`.**
 
-> _Resposta:_
+> _Resposta:_ O Laravel disponibiliza os erros de validação na variável $errors. A diretiva @error permite exibir a mensagem de erro de um campo específico. Já a função old() recupera os valores digitados anteriormente, evitando que o usuário precise preencher o formulário novamente após uma falha de validação.
 >
 >
 
