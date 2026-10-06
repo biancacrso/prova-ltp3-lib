@@ -6,28 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-    Schema::table('autores', function (Blueprint $table) {
-        $table->string('nome');
-        $table->string('nacionalidade');
-    });
+        // As colunas já são criadas na migration original.
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::table('autores', function (Blueprint $table) {
-            //
-        });
+        // Nenhuma alteração adicional para reverter.
     }
 };
